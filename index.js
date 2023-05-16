@@ -51,7 +51,7 @@ function timSoDuongNhoNhat() {
     var timSoDuongNhoNhat = arrSoDuong.sort(function (a, b) {
         return a - b;
     });
-    document.getElementById("soDuongNhoNhat").innerHTML = timSoDuongNhoNhat[0];
+    document.getElementById("soDuongNhoNhat").innerHTML = "Số dương nhỏ nhất trong dãy là: " + timSoDuongNhoNhat[0];
 }
 
 // Câu 5: Tìm số chẵn cuối cùng
@@ -72,7 +72,7 @@ function timSoChanCuoi() {
         timSoChanCuoi = arrsoChan[n - 1];
     }
 
-    document.getElementById("soChanCuoi").innerHTML = timSoChanCuoi;
+    document.getElementById("soChanCuoi").innerHTML = "Số chẵn cuối cùng trong dãy là: " + timSoChanCuoi;
 }
 
 // Câu 6: Đổi chỗ
@@ -90,7 +90,7 @@ function sapXepTangDan() {
     for (var i = 0; i < arrSoN.length; i++) {
         arrSoN.push;
         var sap = arrSoN.sort(function (a, b) {
-           return a - b;
+            return a - b;
         });
     }
     document.getElementById("sapXepTang").innerHTML = "Các số sau khi được sắp xếp là: " + sap;
@@ -98,30 +98,72 @@ function sapXepTangDan() {
 
 // Câu 8: Tìm số nguyên tố đầu tiên
 function timSoNguyenToDauTien() {
-    var soNguyenToDauTien = 0;
-    for (var i = 0; i < arrSoN.length; i++) {
-        if (arrSoN[i] >= 2) {
-
+    var soNguyenToDauTien = [];
+    var n = 1;
+    function checkSoNT(z) {
+        var checkSoNT = "";
+        for (var i = 2; i < z; i++) {
+            if (z % i == 0) {
+                checkSoNT = "không phải số nguyên tố";
+                break;
+            }
+        }
+        if (checkSoNT != "không phải số nguyên tố") {
+            soNguyenToDauTien.push(z);
+        }
+    }
+    for (j = 0; j <= arrSoN.length; j++) {
+        if (arrSoN[j] >= 2) {
+            checkSoNT(arrSoN[j]);
+            if (soNguyenToDauTien.length <= 0) {
+                document.getElementById("soNguyenToDauTien").innerHTML = -1;
+            } else {
+                document.getElementById("soNguyenToDauTien").innerHTML = "Số nguyên tố đầu tiên trong dãy là: " + soNguyenToDauTien;
+                break;
+            }
         }
     }
 }
 
 // Câu 9: Đếm số nguyên
-
+//thêm số thực
 function themSoThuc() {
-    document.getElementById("soThuc").value * 1;
-    var arrsoThuc = arrSoN.push;
-    document.getElementById ("themSoThuc").innerHTML = "Số thực được thêm vào là: " + arrsoThuc;
+    var n = document.getElementById("soThuc").value * 1;
+    arrSoN.push(n);
+    for (var i = 0; i < arrSoN.length; i++) {
+        arrSoN.push;
+        document.getElementById("themSoThuc").innerHTML = "Dãy số sau khi được thêm vào là: " + arrSoN;
+    }
 }
+//Đếm số nguyên
 function demSoNguyen() {
-
+var demSoNguyen = "";
+for (var i = 0; i < arrSoN.length; i++) {
+    if (Math.floor(arrSoN[i]) / arrSoN[i] == 1) {
+        demSoNguyen++;
+    }
+    document.getElementById("demSoNguyen").innerHTML = "Tổng cộng có: " + demSoNguyen + " số nguyên trong dãy"; 
+}
 }
 
 // Câu 10: So sánh số lượng số âm và dương
 function soSanhSo() {
-    var arrsoNguyenDuong = [];
-    var arrSoNguyenAm = [];
+    var ketQuaSoSanh = "";
+    var arrSoDuong = [];
+    var arrSoAm = [];
     for (var i = 0; i < arrSoN.length; i++) {
-
+        if (arrSoN[i] >= 0) {
+            arrSoDuong.push(arrSoN[i]);
+        } else {
+            arrSoAm.push(arrSoN[i]);
+        }
     }
+    if (arrSoDuong.length > arrSoAm.length) {
+        ketQuaSoSanh = "Số lượng số dương nhiều hơn số lượng số âm";
+    } else if (arrSoAm.length > arrSoDuong.length) {
+        ketQuaSoSanh = "Số lượng số âm nhiều hơn số lượng số dương"
+    } else {
+        ketQuaSoSanh = "Số lượng số âm và số dương bằng nhau";
+    }
+    document.getElementById("soSanh").innerHTML = ketQuaSoSanh;
 }
